@@ -1,0 +1,89 @@
+/* Design tokens — from ui-design-studio-skill-output/agent-context/design-system/sparsh-medical/MASTER.md
+   (approved layout v1; colours v2: medical blue). Components use these, never raw hex. */
+:root {
+  /* Brand — medical blue (all text pairs checked at 4.5:1 or better) */
+  --color-primary: #1d4ed8; /* buttons, links, text — 6.7:1 with white */
+  --color-primary-hover: #1e40af;
+  --color-primary-bright: #2563eb; /* fills, icons — 5.2:1 with white */
+  --color-primary-deep: #1e3a8a; /* gradient start */
+  --color-primary-glow: #3b82f6; /* decoration only, never behind text */
+  --color-primary-soft: #eff6ff;
+  --color-primary-soft-hover: #dbeafe;
+  --color-on-primary: #ffffff;
+  --color-on-primary-body: #dbeafe; /* body text on blue */
+  --color-on-primary-muted: #bfdbfe; /* small secondary text on blue */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-deep) 0%, var(--color-primary) 55%, var(--color-primary-bright) 100%);
+  --color-accent: #047857; /* in stock, WhatsApp — 5.5:1 with white */
+  --color-accent-hover: #065f46;
+  --color-accent-bright: #059669;
+  --color-accent-soft: #ecfdf5;
+  --color-on-accent-muted: #d1fae5;
+  --color-highlight: #f59e0b;
+  --color-on-highlight: #422006;
+  --color-warning: #b45309;
+  --color-destructive: #dc2626;
+  --color-destructive-soft: #fef2f2;
+  --color-destructive-border: #f5c2bd;
+
+  /* Surfaces & text */
+  --color-background: #f4f8ff;
+  --color-foreground: #1e3a5f;
+  --color-heading: #0b1f3a; /* navy: headings, top bar, footer, admin sidebar */
+  --color-card: #ffffff;
+  --color-muted: #eaf0f8;
+  --color-muted-foreground: #475569;
+  --color-border: #dbe5f3;
+  --color-ring: #2563eb;
+  --color-on-dark-muted: #c7d7f0;
+  --color-nav-highlight: #60a5fa; /* active item marker on the dark sidebar */
+  --color-nav-active-bg: rgba(37, 99, 235, 0.3);
+  --color-table-head: #f7faff;
+  --color-overlay: rgba(11, 31, 58, 0.5);
+  --color-focus-glow: rgba(37, 99, 235, 0.2);
+
+  /* Category tints (icon tiles, product placeholders) */
+  --tone-blue-bg: #e0f2fe;
+  --tone-blue-fg: #0369a1;
+  --tone-amber-bg: #fef3c7;
+  --tone-amber-fg: #b45309;
+  --tone-pink-bg: #fce7f3;
+  --tone-pink-fg: #be185d;
+  --tone-green-bg: #dcfce7;
+  --tone-green-fg: #15803d;
+  --tone-red-bg: #fee2e2;
+  --tone-red-fg: #b91c1c;
+  --tone-teal-bg: #e0f2fe; /* sky — the "All" tile and unknown categories */
+  --tone-teal-fg: #0369a1;
+
+  /* Type */
+  --font-heading: 'Figtree', system-ui, sans-serif;
+  --font-body: 'Noto Sans', system-ui, sans-serif;
+
+  /* Spacing (density 5/10) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Shape & depth */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+  --shadow-lg: 0 10px 24px rgba(11, 31, 58, 0.18);
+  --shadow-primary: 0 12px 30px rgba(29, 78, 216, 0.28);
+
+  /* Motion (3/10: subtle) */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 180ms;
+
+  /* Layout: full width on every screen; the side gutter grows with the screen
+     (16px on phones → 64px on wide monitors). */
+  --gutter: clamp(16px, 3.5vw, 64px);
+  --header-z: 50;
+  --overlay-z: 100;
+}

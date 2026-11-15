@@ -1,0 +1,88 @@
+/* Shared section heading (category grid + catalog). */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.section-head h2 {
+  font-size: 26px;
+  font-weight: 800;
+}
+.section-head p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--color-muted-foreground);
+}
+
+.catalog {
+  padding-top: var(--space-2xl);
+  scroll-margin-top: 140px;
+}
+.catalog__clear {
+  margin-left: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-primary);
+  font: 700 14px var(--font-heading);
+  text-decoration: underline;
+}
+.catalog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.catalog__grid {
+  display: grid;
+  /* As many 220px+ columns as fit: ~5 on a laptop, 7–8 on 1920px, 10+ on ultrawide. */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: clamp(12px, 1.2vw, 20px);
+}
+.catalog__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 16px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  color: var(--color-muted-foreground);
+  text-align: center;
+}
+.catalog__state h3 {
+  font-size: 18px;
+}
+.catalog__state .btn {
+  margin-top: 8px;
+}
+.catalog__more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+@media (max-width: 720px) {
+  .catalog {
+    padding-top: var(--space-xl);
+  }
+  .section-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .section-head h2 {
+    font-size: 21px;
+  }
+  .catalog__filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .catalog__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}

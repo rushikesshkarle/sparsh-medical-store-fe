@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+
+# Design mockups from the UI design skill (not part of the app)
+ui-design-studio-skill-output/

@@ -1,0 +1,255 @@
+/* Split sign-in (like io-skills-marketplace): brand panel left, form right. */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-card);
+}
+
+/* ---------- Brand panel ---------- */
+.login-page__aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 46%;
+  padding: clamp(32px, 4vw, 64px);
+  overflow: hidden;
+  background: var(--gradient-primary);
+  color: #fff;
+}
+/* Dot grid + soft glow, purely decorative */
+.login-page__aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.login-page__aside::after {
+  content: '';
+  position: absolute;
+  right: -160px;
+  bottom: -160px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.login-page__aside > * {
+  position: relative;
+  z-index: 1;
+}
+.login-page__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.login-page__brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #fff;
+  object-fit: cover;
+}
+.login-page__brand strong {
+  display: block;
+  font: 800 20px/1.1 var(--font-heading);
+}
+.login-page__brand small {
+  color: var(--color-on-primary-muted);
+  font-size: 12.5px;
+}
+.login-page__pitch h2 {
+  max-width: 480px;
+  color: #fff;
+  font-size: clamp(28px, 2.6vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.login-page__pitch > p {
+  max-width: 440px;
+  margin-top: 16px;
+  color: var(--color-on-primary-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.login-page__points {
+  display: grid;
+  gap: 14px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.login-page__points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: #fff;
+}
+.login-page__points svg {
+  box-sizing: content-box;
+  padding: 9px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.login-page__store {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--color-on-primary-body);
+}
+.login-page__store-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-on-primary-muted);
+}
+
+/* ---------- Form side ---------- */
+.login-page__main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+.login-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 380px;
+}
+.login-page__mobile-brand {
+  display: none;
+}
+.login-page__form h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+.login-page__lead {
+  margin: -6px 0 12px;
+  text-align: center;
+  font-size: 14.5px;
+  color: var(--color-muted-foreground);
+}
+.login-page__google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 20px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  color: var(--color-heading);
+  font: 600 15px var(--font-heading);
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+.login-page__google:hover:not(:disabled) {
+  border-color: var(--color-primary-bright);
+  background: var(--color-background);
+  box-shadow: 0 6px 16px rgba(11, 31, 58, 0.06);
+}
+.login-page__google:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.login-page__note,
+.login-page__hint {
+  margin-top: -6px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-muted-foreground);
+}
+/* "or" divider between Google and guest */
+.login-page__or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-muted-foreground);
+  font-size: 13px;
+}
+.login-page__or::before,
+.login-page__or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Guest: a full-width secondary button so customers see it as a real choice */
+.login-page__guest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 20px;
+  border-radius: var(--radius);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font: 700 15px var(--font-heading);
+  transition: background-color var(--dur) var(--ease);
+}
+.login-page__guest:hover {
+  background: var(--color-primary-soft-hover);
+}
+.login-page__guest svg:last-child {
+  transition: transform var(--dur) var(--ease);
+}
+.login-page__guest:hover svg:last-child {
+  transform: translateX(3px);
+}
+.login-page__staff {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  font-size: 12.5px;
+  text-align: center;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------- Small screens: form only, brand on top ---------- */
+@media (max-width: 960px) {
+  .login-page__aside {
+    display: none;
+  }
+  .login-page__main {
+    background: linear-gradient(180deg, var(--color-primary-soft) 0%, var(--color-card) 70%);
+  }
+  .login-page__mobile-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .login-page__mobile-brand img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+  }
+  .login-page__mobile-brand strong {
+    font: 800 20px var(--font-heading);
+    color: var(--color-heading);
+  }
+}

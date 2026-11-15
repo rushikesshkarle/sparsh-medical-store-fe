@@ -1,0 +1,143 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(360px, 1fr);
+  gap: var(--space-lg);
+  padding-top: var(--space-xl);
+  scroll-margin-top: 140px;
+}
+.hero__main {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 44px 40px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+.hero__main::before,
+.hero__main::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero__main::before {
+  width: 340px;
+  height: 340px;
+  right: -90px;
+  top: -110px;
+  opacity: 0.7;
+}
+.hero__main::after {
+  width: 180px;
+  height: 180px;
+  right: 120px;
+  bottom: -110px;
+  opacity: 0.5;
+}
+.hero__main > * {
+  position: relative;
+  z-index: 1;
+}
+/* Live store status — replaces the old top bar. */
+.hero__status {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-on-primary-body);
+  font-size: 13.5px;
+}
+.hero__status strong {
+  color: #fff;
+  font-weight: 700;
+}
+.hero__status-place {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.hero__status-sep {
+  width: 4px;
+  height: 4px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: var(--color-on-primary-muted);
+}
+.hero__main h1 {
+  max-width: 720px;
+  margin: 18px 0 12px;
+  color: #fff;
+  font-size: clamp(29px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.hero__main p {
+  max-width: 600px;
+  color: var(--color-on-primary-body);
+  font-size: 17px;
+}
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.hero__stats {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+.hero__stats dt {
+  font: 800 22px var(--font-heading);
+  color: #fff;
+}
+.hero__stats dd {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-on-primary-muted);
+}
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .hero__status-place {
+    display: none; /* full address is in "Visit the store" */
+  }
+  .hero {
+    gap: 14px;
+    padding-top: 14px;
+  }
+  .hero__main {
+    padding: 26px 22px;
+    border-radius: 18px;
+  }
+  .hero__main p {
+    font-size: 15px;
+  }
+  .hero__cta .btn {
+    flex: 1;
+  }
+  .hero__stats {
+    gap: 18px;
+    margin-top: 22px;
+    padding-top: 16px;
+  }
+  .hero__stats dt {
+    font-size: 18px;
+  }
+  .hero__stats dd {
+    font-size: 12px;
+  }
+}

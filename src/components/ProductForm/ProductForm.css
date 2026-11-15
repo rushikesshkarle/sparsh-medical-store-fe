@@ -1,0 +1,106 @@
+/* Shared admin form primitives (also used by the login page). */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+.form-field > span {
+  font-weight: 700;
+  color: var(--color-heading);
+}
+.form-field small {
+  color: var(--color-muted-foreground);
+}
+.form-field input:not([type='checkbox']):not([type='file']),
+.form-field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-card);
+  color: var(--color-heading);
+  font-size: 16px;
+  transition: border-color var(--dur) var(--ease);
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--color-primary-bright);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-focus-glow);
+}
+.form-field textarea {
+  resize: vertical;
+}
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.form-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+}
+.form-alert {
+  padding: 12px 14px;
+  border: 1px solid var(--color-destructive-border);
+  border-radius: 10px;
+  background: var(--color-destructive-soft);
+  color: var(--color-destructive);
+  font-size: 14px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 680px;
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+}
+.product-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.product-form__image {
+  margin-bottom: 4px;
+}
+.product-form__preview {
+  width: 140px;
+  height: 140px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-background);
+  object-fit: contain;
+}
+.product-form__preview--empty {
+  display: grid;
+  place-items: center;
+  color: var(--color-muted-foreground);
+}
+.product-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border);
+}
+@media (max-width: 600px) {
+  .product-form {
+    padding: 18px;
+  }
+  .product-form__row {
+    grid-template-columns: 1fr;
+  }
+  .product-form__actions .btn {
+    flex: 1;
+  }
+}

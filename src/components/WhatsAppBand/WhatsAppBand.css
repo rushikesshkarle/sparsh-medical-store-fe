@@ -1,0 +1,76 @@
+.wa-band {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+  padding: 32px 40px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+.wa-band::after {
+  content: '';
+  position: absolute;
+  right: 200px;
+  top: -150px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.wa-band > * {
+  position: relative;
+  z-index: 1;
+}
+.wa-band__text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wa-band__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.wa-band h2 {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+}
+.wa-band p {
+  margin-top: 6px;
+  color: var(--color-on-primary-body);
+}
+/* WhatsApp keeps its green so people recognise it at a glance. */
+.wa-band__btn {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+.wa-band__btn:hover {
+  background: var(--color-accent-hover);
+}
+@media (max-width: 720px) {
+  .wa-band {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 22px;
+    border-radius: 18px;
+  }
+  .wa-band h2 {
+    font-size: 21px;
+  }
+  .wa-band__icon {
+    display: none;
+  }
+}
