@@ -65,3 +65,18 @@ The image serves the build with nginx and proxies `/api` and `/media` to the bac
 docker build -t sparsh-medical-fe .
 docker run -p 8080:80 -e BACKEND_URL=http://host.docker.internal:8000 sparsh-medical-fe
 ```
+
+## Deploy on Vercel (free)
+
+`vercel.json` serves `index.html` for every route (so refreshing `/login` or `/admin/...`
+works) and sets cache/security headers. The app calls the backend directly:
+
+| Vercel env variable | Value |
+|---|---|
+| `VITE_API_BASE_URL` | The backend URL, e.g. `https://sparsh-medical-api.onrender.com` (no trailing `/`) |
+| `VITE_GOOGLE_CLIENT_ID` | Same value as the backend's `GOOGLE_CLIENT_ID` |
+
+`VITE_*` values are baked in at build time — **redeploy** after changing them. On the
+backend, set `CORS_ALLOW_ORIGINS` to the Vercel URL, and add the Vercel URL to the Google
+OAuth client's *Authorized JavaScript origins*. The privacy policy is at `/privacy`.
+

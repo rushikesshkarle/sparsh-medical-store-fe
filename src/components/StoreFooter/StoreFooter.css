@@ -57,6 +57,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 13px;
 }
+.store-footer__bottom a {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  text-decoration: underline;
+}
 @media (max-width: 720px) {
   .store-footer {
     padding-bottom: 84px; /* room for the mobile cart bar */

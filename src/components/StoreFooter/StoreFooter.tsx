@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { STORE_INFO } from '../../config/store';
 import { prescriptionUrl, whatsappUrl } from '../../utils/whatsapp';
 import './StoreFooter.css';
@@ -48,7 +49,9 @@ export default function StoreFooter() {
           <span>
             © {new Date().getFullYear()} {STORE_INFO.name}. All rights reserved.
           </span>
-          <span>Orders are confirmed by the store on WhatsApp.</span>
+          <span>
+            Orders are confirmed by the store on WhatsApp. · <Link to="/privacy">Privacy policy</Link>
+          </span>
         </div>
       </div>
     </footer>
