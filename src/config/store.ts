@@ -45,7 +45,7 @@ export interface CategoryOption {
 
 export const CATEGORIES: CategoryOption[] = [
   { label: 'All', value: '', hint: 'Everything in store', icon: 'grid', tone: 'teal' },
-  { label: 'Medicines', value: 'Medicines', hint: 'OTC & prescription', icon: 'pill', tone: 'blue' },
+  { label: 'Medicines', value: 'Medicines', hint: 'Everyday medicines', icon: 'pill', tone: 'blue' },
   { label: 'Vitamins', value: 'Vitamins', hint: 'Immunity & energy', icon: 'citrus', tone: 'amber' },
   { label: 'Personal care', value: 'Personal Care', hint: 'Skin & hygiene', icon: 'droplet', tone: 'pink' },
   { label: 'Hair care', value: 'Hair Care', hint: 'Oils & shampoos', icon: 'leaf', tone: 'green' },

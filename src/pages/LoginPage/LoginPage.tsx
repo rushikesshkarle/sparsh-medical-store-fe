@@ -7,6 +7,7 @@ import { isStoreOpen } from '../../utils/storeHours';
 import { GOOGLE_CLIENT_ID } from '../../config/googleAuth';
 import { useAuth } from '../../contexts/AuthContext';
 import { authService } from '../../services/authService';
+import axios from 'axios';
 import { extractErrorMessage } from '../../services/api';
 import type { User } from '../../types/auth';
 import '../../components/ProductForm/ProductForm.css';
@@ -32,14 +33,15 @@ function GoogleIcon() {
 }
 
 /** Our own button opens Google's popup (auth-code flow); the backend exchanges the code. Must sit under GoogleOAuthProvider. */
-function GoogleSignInButton({ busy, onCode, onError }: { busy: boolean; onCode: (code: string) => void; onError: () => void }) {
+function GoogleSignInButton({ busy, onCode, onError }: { busy: boolean; onCode: (code: string) => void; onError: (reason: string) => void }) {
   const openPopup = useGoogleLogin({
     flow: 'auth-code',
     onSuccess: (response) => onCode(response.code),
-    onError,
+    // Google's reason (e.g. access_denied) makes a failed sign-in diagnosable.
+    onError: (response) => onError(response.error_description || response.error || 'unknown'),
     onNonOAuthError: (err) => {
       // Closing the popup is not an error worth shouting about.
-      if (err.type !== 'popup_closed') onError();
+      if (err.type !== 'popup_closed') onError(err.type);
     },
   });
   return (
@@ -70,7 +72,9 @@ export default function LoginPage() {
       login(result);
       navigate(landingFor(result.user, from), { replace: true });
     } catch (err) {
-      setError(extractErrorMessage(err));
+      // Show the backend's reason (e.g. Google's invalid_grant) next to the message.
+      const reason = axios.isAxiosError(err) && typeof err.response?.data?.error === 'string' ? err.response.data.error : '';
+      setError(reason ? `${extractErrorMessage(err)} (${reason})` : extractErrorMessage(err));
     } finally {
       setBusy(false);
     }
@@ -100,7 +104,7 @@ export default function LoginPage() {
               <Icon name="shield" /> Genuine medicines from a trusted local store
             </li>
             <li>
-              <Icon name="chat" /> Order and send prescriptions on WhatsApp
+              <Icon name="chat" /> Order on WhatsApp, ready for pickup
             </li>
             <li>
               <Icon name="box" /> Staff manage products, prices and stock
@@ -140,7 +144,7 @@ export default function LoginPage() {
               <GoogleSignInButton
                 busy={busy}
                 onCode={handleCode}
-                onError={() => setError('Google sign-in failed. Please try again.')}
+                onError={(reason) => setError(`Google sign-in failed (${reason}). Please try again.`)}
               />
             </GoogleOAuthProvider>
           ) : (

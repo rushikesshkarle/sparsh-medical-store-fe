@@ -69,17 +69,6 @@
   align-items: center;
   gap: var(--space-md);
 }
-.store-header__rx {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  font: 600 14px var(--font-heading);
-  color: var(--color-primary);
-}
-.store-header__rx:hover {
-  text-decoration: underline;
-}
 .store-header__call {
   display: inline-flex;
   align-items: center;
@@ -141,11 +130,6 @@
 
 @media (max-width: 1200px) {
   .store-header__call-text {
-    display: none;
-  }
-}
-@media (max-width: 900px) {
-  .store-header__rx {
     display: none;
   }
 }

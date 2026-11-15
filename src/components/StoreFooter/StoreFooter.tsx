@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { STORE_INFO } from '../../config/store';
-import { prescriptionUrl, whatsappUrl } from '../../utils/whatsapp';
+import { whatsappUrl } from '../../utils/whatsapp';
 import './StoreFooter.css';
 
 export default function StoreFooter() {
@@ -30,9 +30,6 @@ export default function StoreFooter() {
             <h3>Help</h3>
             <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
               Order on WhatsApp
-            </a>
-            <a href={prescriptionUrl()} target="_blank" rel="noopener noreferrer">
-              Send prescription
             </a>
             <a href={STORE_INFO.mapsUrl} target="_blank" rel="noopener noreferrer">
               Get directions

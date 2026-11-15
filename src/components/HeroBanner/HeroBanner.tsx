@@ -1,5 +1,4 @@
 import Icon from '../Icon/Icon';
-import PrescriptionCard from '../PrescriptionCard/PrescriptionCard';
 import { STORE_INFO } from '../../config/store';
 import { hoursOpenPerDay, isStoreOpen } from '../../utils/storeHours';
 import { whatsappUrl } from '../../utils/whatsapp';
@@ -53,7 +52,6 @@ export default function HeroBanner() {
           </div>
         </dl>
       </div>
-      <PrescriptionCard />
     </section>
   );
 }

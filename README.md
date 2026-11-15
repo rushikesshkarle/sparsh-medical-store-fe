@@ -46,7 +46,7 @@ src/
   utils/     whatsapp.ts, storeHours.ts, categoryVisual.ts, format.ts, media.ts, StorageUtils.ts
   components/<Name>/<Name>.tsx + <Name>.css
              Icon                 inline SVG icon set (Lucide paths)
-             Store:  StoreTopBar, StoreHeader, CategoryNav, HeroBanner, PrescriptionCard, TrustStrip,
+             Store:  StoreTopBar, StoreHeader, CategoryNav, HeroBanner, TrustStrip,
                      CategoryGrid, ProductCatalog, ProductCard, WhatsAppBand, VisitStore,
                      StoreFooter, CartDrawer, MobileCartBar, Loader
              Admin:  AdminRoute, AdminLayout, AdminStats, ProductForm · AccountMenu (header)

@@ -3,7 +3,6 @@ import Icon from '../Icon/Icon';
 import AccountMenu from '../AccountMenu/AccountMenu';
 import { STORE_INFO } from '../../config/store';
 import { useCart } from '../../contexts/CartContext';
-import { prescriptionUrl } from '../../utils/whatsapp';
 import './StoreHeader.css';
 
 interface StoreHeaderProps {
@@ -63,9 +62,6 @@ export default function StoreHeader({ searchQuery, onSearch, children }: StoreHe
               <small>Call the store</small>
               {STORE_INFO.phoneDisplay}
             </span>
-          </a>
-          <a className="store-header__rx" href={prescriptionUrl()} target="_blank" rel="noopener noreferrer">
-            <Icon name="file" /> Upload prescription
           </a>
           <button type="button" className="store-header__cart" onClick={open} aria-label={`Open cart, ${count} items`}>
             <Icon name="cart" />

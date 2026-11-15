@@ -16,9 +16,6 @@ export const buildWhatsAppOrderUrl = (items: CartItem[]): string => {
   );
 };
 
-export const prescriptionUrl = (): string =>
-  whatsappUrl(`Hello ${STORE_INFO.name}, I'd like to order the medicines on my prescription (photo attached).`);
-
 export const enquiryUrl = (): string =>
   whatsappUrl(`Hello ${STORE_INFO.name}, I'm looking for a medicine: `);
 

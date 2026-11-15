@@ -1,6 +1,6 @@
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.8fr) minmax(360px, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-lg);
   padding-top: var(--space-xl);
   scroll-margin-top: 140px;
@@ -106,11 +106,6 @@
   color: var(--color-on-primary-muted);
 }
 
-@media (max-width: 960px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-}
 @media (max-width: 720px) {
   .hero__status-place {
     display: none; /* full address is in "Visit the store" */
