@@ -2,8 +2,8 @@ import axios from 'axios';
 import { StorageService } from '../utils/StorageUtils';
 import type { CustomError } from '../types/api';
 
-/** Shared axios client. Attaches the Bearer token when present and, on a 401
- * (expired or revoked session), clears the session and bounces to sign-in. */
+/** Shared axios client. Attaches the admin Bearer token when present and, on a
+ * 401 (expired session or changed password), clears it and bounces to the admin login. */
 const apiClient = axios.create({ timeout: 30_000 });
 
 apiClient.interceptors.request.use((config) => {
@@ -15,10 +15,10 @@ apiClient.interceptors.request.use((config) => {
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    const isLogin = String(error.config?.url ?? '').endsWith('/auth/google');
+    const isLogin = String(error.config?.url ?? '').endsWith('/auth/login');
     if (error.response?.status === 401 && !isLogin && StorageService.getToken()) {
       StorageService.clearSession();
-      window.location.assign('/login');
+      window.location.assign('/admin/login');
     }
     return Promise.reject(error);
   },

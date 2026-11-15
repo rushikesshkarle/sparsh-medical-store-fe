@@ -1,6 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from 'react';
 import Icon from '../Icon/Icon';
-import AccountMenu from '../AccountMenu/AccountMenu';
 import { STORE_INFO } from '../../config/store';
 import { useCart } from '../../contexts/CartContext';
 import './StoreHeader.css';
@@ -72,7 +71,6 @@ export default function StoreHeader({ searchQuery, onSearch, children }: StoreHe
               </span>
             )}
           </button>
-          <AccountMenu />
         </div>
       </div>
       {children}

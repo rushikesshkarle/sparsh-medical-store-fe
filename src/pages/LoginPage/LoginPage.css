@@ -141,35 +141,6 @@
   font-size: 14.5px;
   color: var(--color-muted-foreground);
 }
-.login-page__google {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  min-height: 56px;
-  padding: 0 20px;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-card);
-  color: var(--color-heading);
-  font: 600 15px var(--font-heading);
-  cursor: pointer;
-  transition:
-    border-color var(--dur) var(--ease),
-    background-color var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
-}
-.login-page__google:hover:not(:disabled) {
-  border-color: var(--color-primary-bright);
-  background: var(--color-background);
-  box-shadow: 0 6px 16px rgba(11, 31, 58, 0.06);
-}
-.login-page__google:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-.login-page__note,
 .login-page__hint {
   margin-top: -6px;
   font-size: 13px;
@@ -177,7 +148,7 @@
   text-align: center;
   color: var(--color-muted-foreground);
 }
-/* "or" divider between Google and guest */
+/* "or" divider between the admin form and the way back to the store */
 .login-page__or {
   display: flex;
   align-items: center;
@@ -193,7 +164,7 @@
   background: var(--color-border);
 }
 
-/* Guest: a full-width secondary button so customers see it as a real choice */
+/* Back to the store: a full-width secondary button for shoppers who landed here */
 .login-page__guest {
   display: inline-flex;
   align-items: center;
@@ -216,14 +187,6 @@
 }
 .login-page__guest:hover svg:last-child {
   transform: translateX(3px);
-}
-.login-page__staff {
-  margin-top: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--color-border);
-  font-size: 12.5px;
-  text-align: center;
-  color: var(--color-muted-foreground);
 }
 
 /* ---------- Small screens: form only, brand on top ---------- */
@@ -252,4 +215,10 @@
     font: 800 20px var(--font-heading);
     color: var(--color-heading);
   }
+}
+
+.login-page__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }

@@ -16,12 +16,11 @@ export default function App() {
           {/* Public storefront */}
           <Route path="/" element={<StorePage />} />
 
-          {/* Google sign-in for everyone; admins are ALLOWED_ADMIN_EMAILS on the backend */}
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
 
           {/* Admin (replaces the Django admin) */}
-          <Route path="/admin/login" element={<Navigate to="/login" replace />} />
+          <Route path="/admin/login" element={<LoginPage />} />
+          <Route path="/login" element={<Navigate to="/admin/login" replace />} />
           <Route path="/admin" element={<Navigate to="/admin/products" replace />} />
           <Route
             path="/admin/products"

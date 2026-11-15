@@ -9,7 +9,7 @@ export const STORE_INFO = {
   phone: '9503486348',
   phoneDisplay: '95034 86348',
   whatsappNumber: '919503486348',
-  mapsUrl: 'https://maps.app.goo.gl/vtCHrkLpDLfySEkq5?g_st=aw',
+  mapsUrl: 'https://maps.app.goo.gl/vbaMeB72wELNyez58',
   /** Map in "Visit the store": a place search shown at street level (zoom 1–21). */
   map: {
     query: 'Ashtvinayak Chowk, Morewasti, Chikhali, Pune',

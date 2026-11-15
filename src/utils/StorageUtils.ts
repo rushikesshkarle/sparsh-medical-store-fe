@@ -1,9 +1,9 @@
-import type { User } from '../types/auth';
+import type { Admin } from '../types/auth';
 import type { CartItem } from '../types/product';
 
-/** The sign-in session lives in sessionStorage (ends with the tab); the cart in localStorage. */
+/** The admin session lives in sessionStorage (ends with the tab); the cart in localStorage. */
 const TOKEN_KEY = 'sm_token';
-const USER_KEY = 'sm_user';
+const ADMIN_KEY = 'sm_admin';
 const CART_KEY = 'sparshCart';
 
 function read<T>(storage: Storage, key: string): T | null {
@@ -34,17 +34,17 @@ export const StorageService = {
   setToken(token: string): void {
     write(sessionStorage, TOKEN_KEY, token);
   },
-  getUser(): User | null {
-    return read<User>(sessionStorage, USER_KEY);
+  getAdmin(): Admin | null {
+    return read<Admin>(sessionStorage, ADMIN_KEY);
   },
-  setUser(user: User): void {
-    write(sessionStorage, USER_KEY, user);
+  setAdmin(admin: Admin): void {
+    write(sessionStorage, ADMIN_KEY, admin);
   },
   clearSession(): void {
     try {
       sessionStorage.removeItem(TOKEN_KEY);
-      sessionStorage.removeItem(USER_KEY);
-      sessionStorage.removeItem('sm_admin'); // pre-Google-login key
+      sessionStorage.removeItem(ADMIN_KEY);
+      sessionStorage.removeItem('sm_user'); // key from the removed Google sign-in
     } catch {
       // ignore
     }

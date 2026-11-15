@@ -6,11 +6,11 @@ template (`products/templates/products/index.html`) and the Django admin.
 | Area | Route | Who |
 |---|---|---|
 | Store (user panel) | `/` — `?q=` search, `?category=` filter | Public, no login |
-| Sign in | `/login` (Continue with Google; `/admin/login` redirects here) | Anyone with a Google account |
-| Admin products | `/admin/products`, `/admin/products/new`, `/admin/products/:id/edit` | Admins only: email in the backend's `ALLOWED_ADMIN_EMAILS` |
+| Admin login | `/admin/login` (`/login` redirects here) — username/password from the backend env | Store staff |
+| Admin products | `/admin/products`, `/admin/products/new`, `/admin/products/:id/edit` | Signed-in admin |
 
-Customers who sign in see their avatar menu in the store header; admins also get an
-**Admin dashboard** link there. A customer who opens `/admin/...` is sent back to the store.
+There are no customer accounts: shoppers browse and order on WhatsApp as guests.
+Only the store admin signs in.
 
 Customers browse, search, filter, add to a browser-side cart and send the order to
 the store on **WhatsApp** (there is no online payment, as on the old site).
@@ -41,7 +41,7 @@ src/
              store.ts            address, phone, hours, categories (icons + colours)
   types/     api.ts, product.ts, auth.ts
   services/  api.ts (axios + error envelope), authService.ts, productService.ts
-  contexts/  AuthContext.tsx (Google sign-in session, isAdmin), CartContext.tsx (localStorage cart)
+  contexts/  AuthContext.tsx (admin session), CartContext.tsx (localStorage cart)
   hooks/     useProducts.ts (paged listing with search / category / sort / status)
   utils/     whatsapp.ts, storeHours.ts, categoryVisual.ts, format.ts, media.ts, StorageUtils.ts
   components/<Name>/<Name>.tsx + <Name>.css
@@ -49,7 +49,7 @@ src/
              Store:  StoreTopBar, StoreHeader, CategoryNav, HeroBanner, TrustStrip,
                      CategoryGrid, ProductCatalog, ProductCard, WhatsAppBand, VisitStore,
                      StoreFooter, CartDrawer, MobileCartBar, Loader
-             Admin:  AdminRoute, AdminLayout, AdminStats, ProductForm · AccountMenu (header)
+             Admin:  AdminRoute, AdminLayout, AdminStats, ProductForm
   pages/     StorePage/, NotFoundPage/, LoginPage/, admin/AdminProductsPage, AdminProductFormPage
              (a page's CSS sits next to it, e.g. admin/AdminProductsPage.css)
 ```
@@ -68,15 +68,13 @@ docker run -p 8080:80 -e BACKEND_URL=http://host.docker.internal:8000 sparsh-med
 
 ## Deploy on Vercel (free)
 
-`vercel.json` serves `index.html` for every route (so refreshing `/login` or `/admin/...`
+`vercel.json` serves `index.html` for every route (so refreshing `/admin/...` or `/privacy`
 works) and sets cache/security headers. The app calls the backend directly:
 
 | Vercel env variable | Value |
 |---|---|
 | `VITE_API_BASE_URL` | The backend URL, e.g. `https://sparsh-medical-api.onrender.com` (no trailing `/`) |
-| `VITE_GOOGLE_CLIENT_ID` | Same value as the backend's `GOOGLE_CLIENT_ID` |
 
 `VITE_*` values are baked in at build time — **redeploy** after changing them. On the
-backend, set `CORS_ALLOW_ORIGINS` to the Vercel URL, and add the Vercel URL to the Google
-OAuth client's *Authorized JavaScript origins*. The privacy policy is at `/privacy`.
+backend, set `CORS_ALLOW_ORIGINS` to the Vercel URL. The privacy policy is at `/privacy`.
 

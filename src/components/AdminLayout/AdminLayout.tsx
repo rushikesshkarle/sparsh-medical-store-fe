@@ -13,8 +13,8 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ title, subtitle, actions, children }: AdminLayoutProps) {
-  const { user, logout } = useAuth();
-  const displayName = user?.name || user?.email || '';
+  const { admin, logout } = useAuth();
+  const displayName = admin?.username ?? '';
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -44,16 +44,12 @@ export default function AdminLayout({ title, subtitle, actions, children }: Admi
           </a>
         </nav>
         <div className="admin-side__me">
-          {user?.picture ? (
-            <img className="admin-side__avatar" src={user.picture} alt="" width={36} height={36} referrerPolicy="no-referrer" />
-          ) : (
-            <span className="admin-side__avatar" aria-hidden="true">
-              {displayName.charAt(0).toUpperCase()}
-            </span>
-          )}
+          <span className="admin-side__avatar" aria-hidden="true">
+            {displayName.charAt(0).toUpperCase()}
+          </span>
           <span className="admin-side__who">
             <strong>{displayName}</strong>
-            <small>{user?.email}</small>
+            <small>Store manager</small>
           </span>
           <button type="button" className="admin-side__logout" onClick={handleLogout} aria-label="Log out">
             <Icon name="logout" />

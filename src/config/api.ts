@@ -8,16 +8,13 @@ const V1 = `${API_BASE_URL}/api/v1`;
 
 export const API_ENDPOINTS = {
   // Auth
-  GOOGLE_LOGIN: `${V1}/auth/google`,
+  LOGIN: `${V1}/auth/login`,
   ME: `${V1}/auth/me`,
 
   // Public storefront
   PRODUCTS: `${V1}/products`,
   PRODUCT_CATEGORIES: `${V1}/products/categories`,
   PRODUCT: (id: string) => `${V1}/products/${id}`,
-
-  // Signed-in user's saved cart (Bearer)
-  CART: `${V1}/cart`,
 
   // Admin catalogue (Bearer-gated)
   ADMIN_PRODUCTS: `${V1}/admin/products`,

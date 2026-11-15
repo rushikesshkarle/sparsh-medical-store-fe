@@ -9,13 +9,12 @@ import {
 } from 'react';
 import { StorageService } from '../utils/StorageUtils';
 import { authService } from '../services/authService';
-import type { LoginResult, User } from '../types/auth';
+import type { Admin, LoginResult } from '../types/auth';
 
 interface AuthContextValue {
+  /** True when the store admin is signed in (there are no customer accounts). */
   isAuthenticated: boolean;
-  /** True only for emails in the backend's ALLOWED_ADMIN_EMAILS. */
-  isAdmin: boolean;
-  user: User | null;
+  admin: Admin | null;
   login: (result: LoginResult) => void;
   logout: () => void;
 }
@@ -25,25 +24,23 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   // Hydrate synchronously from sessionStorage so there is no logged-out flash.
   const [token, setToken] = useState<string | null>(() => StorageService.getToken());
-  const [user, setUser] = useState<User | null>(() => StorageService.getUser());
+  const [admin, setAdmin] = useState<Admin | null>(() => StorageService.getAdmin());
 
   const login = useCallback((result: LoginResult) => {
     StorageService.setToken(result.access_token);
-    StorageService.setUser(result.user);
+    StorageService.setAdmin(result.admin);
     setToken(result.access_token);
-    setUser(result.user);
+    setAdmin(result.admin);
   }, []);
 
   const logout = useCallback(() => {
     StorageService.clearSession();
-    // The cart is saved on the account; don't leave it on a shared device.
-    StorageService.setCart([]);
     setToken(null);
-    setUser(null);
+    setAdmin(null);
   }, []);
 
-  // Revalidate a stored token once on load, which also refreshes is_admin if the
-  // admin list changed. An expired token is dropped by the 401 interceptor.
+  // Revalidate a stored token once on load; an expired one is dropped by the
+  // 401 interceptor in services/api.ts.
   useEffect(() => {
     if (!token) return;
     let alive = true;
@@ -51,8 +48,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .me()
       .then((fresh) => {
         if (!alive) return;
-        StorageService.setUser(fresh);
-        setUser(fresh);
+        StorageService.setAdmin(fresh);
+        setAdmin(fresh);
       })
       .catch(() => {
         /* handled by the interceptor */
@@ -60,19 +57,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       alive = false;
     };
-    // Only on first mount — login() already stores a fresh user.
+    // Only on first mount — login() already stores a fresh admin.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value = useMemo(
-    () => ({
-      isAuthenticated: Boolean(token && user),
-      isAdmin: Boolean(token && user?.is_admin),
-      user,
-      login,
-      logout,
-    }),
-    [token, user, login, logout],
+    () => ({ isAuthenticated: Boolean(token && admin), admin, login, logout }),
+    [token, admin, login, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

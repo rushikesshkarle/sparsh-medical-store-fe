@@ -1,17 +1,16 @@
 import apiClient from './api';
 import { API_ENDPOINTS } from '../config/api';
 import type { CustomResponse } from '../types/api';
-import type { LoginResult, User } from '../types/auth';
+import type { Admin, LoginResult } from '../types/auth';
 
 export const authService = {
-  /** Trade the Google popup's authorization code for our access token. */
-  async googleLogin(code: string): Promise<LoginResult> {
-    const { data } = await apiClient.post<CustomResponse<LoginResult>>(API_ENDPOINTS.GOOGLE_LOGIN, { code });
+  async login(username: string, password: string): Promise<LoginResult> {
+    const { data } = await apiClient.post<CustomResponse<LoginResult>>(API_ENDPOINTS.LOGIN, { username, password });
     return data.result;
   },
 
-  async me(): Promise<User> {
-    const { data } = await apiClient.get<CustomResponse<User>>(API_ENDPOINTS.ME);
+  async me(): Promise<Admin> {
+    const { data } = await apiClient.get<CustomResponse<Admin>>(API_ENDPOINTS.ME);
     return data.result;
   },
 };
