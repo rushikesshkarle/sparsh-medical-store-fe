@@ -12,8 +12,9 @@ export const STORE_INFO = {
   mapsUrl: 'https://maps.app.goo.gl/vbaMeB72wELNyez58',
   /** Map in "Visit the store": a place search shown at street level (zoom 1–21). */
   map: {
-    query: 'Ashtvinayak Chowk, Morewasti, Chikhali, Pune',
-    zoom: 16,
+    /** The store's exact pin (SPARSH MEDICAL on Google Maps), as "lat,lng". */
+    query: '18.6751002,73.7974917',
+    zoom: 17,
     /** Optional: paste the store's own embed URL from Google Maps → Share → "Embed a map"
      *  (the src="…" part) for an exact pin. When set, it is used instead of the query. */
     embedUrl: '',
