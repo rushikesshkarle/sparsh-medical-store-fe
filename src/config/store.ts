@@ -17,7 +17,8 @@ export const STORE_INFO = {
     zoom: 17,
     /** Optional: paste the store's own embed URL from Google Maps → Share → "Embed a map"
      *  (the src="…" part) for an exact pin. When set, it is used instead of the query. */
-    embedUrl: '',
+    embedUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d356.7959107371751!2d73.79759000081832!3d18.675098376949244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b79d289b6379%3A0x127072e37a8d0fa7!2sSPARSH%20MEDICAL!5e0!3m2!1sen!2sin!4v1794766005335!5m2!1sen!2sin',
   },
   logo: '/images/logo.jpg',
   /** Opening hours, 24h "HH:MM" in the store's time zone. */
